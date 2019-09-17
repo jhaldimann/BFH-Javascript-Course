@@ -3,8 +3,7 @@ const alphabetString = 'a=.-;b=-...;c=-.-.;d=-..;e=.;f=..-;g=--.;h=....;i=..;j=.
   'y=-.-;z=--..; =//;.=.-.-.-;,=--..--;?=..--..;!=-.-.--';
 
 let charToMorseCode = (input) => {
-  let output = alphabetString.match(input+'=[-./]*');
-  return output[0].substring(2);
+  return alphabetString.match(input+'=[-./]*')[0].substring(2);
 };
 
 let convertToMorseCode = (input) => {
