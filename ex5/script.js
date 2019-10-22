@@ -29,17 +29,12 @@ function toMorse (text) {
 function getText() {
   getQuote()
     .then(toMorse)
-    .then(writeResult)
+    .then((response) => document.querySelector('.quotes').innerHTML += response + "<br/>")
     .catch(error => {
-      writeError(error);
+      document.querySelector('.errors').innerHTML += error + "<br/>"
     });
 }
-function writeResult(r) {
-  document.querySelector('.quotes').innerHTML += r + "<br/>";
-}
-function writeError(e) {
-  document.querySelector('.errors').innerHTML += e + "<br/>";
-}
+
 function init() {
   for (let i = 0; i < 4; i++) {
     getText();
