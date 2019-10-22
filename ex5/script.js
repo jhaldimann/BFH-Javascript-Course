@@ -1,3 +1,4 @@
+let resText;
 function getQuote () {
   return new Promise((resolve, reject) => {
     fetch('https://www.sws.bfh.ch/~locher/js/services/quote.php').then(resp => {
@@ -13,6 +14,7 @@ function getQuote () {
 }
 
 function toMorse (text) {
+    resText = text;
     return new Promise(((resolve, reject) => {
       fetch('https://www.sws.bfh.ch/~locher/js/services/morse.php?text='+text).then(resp => {
         if(resp.ok) {
@@ -29,7 +31,7 @@ function toMorse (text) {
 function getText() {
   getQuote()
     .then(toMorse)
-    .then((response) => document.querySelector('.quotes').innerHTML += response + "<br/>")
+    .then((response) => document.querySelector('.quotes').innerHTML += resText + '<br/>' + response + '<br/>')
     .catch(error => {
       document.querySelector('.errors').innerHTML += error + "<br/>"
     });
